@@ -6,19 +6,19 @@ const {userQuestions} = require("./questions");
 function getLicenseBadge(license) {
     let licenseBadge;
       if (license === "MIT License"){
-        licenseBadge = `[<img src="https://img.shields.io/badge/License-MIT_License-blue">](https://mit-license.org/)`
+        licenseBadge = `![MIT License](https://img.shields.io/badge/License-MIT_License-blue)(https://mit-license.org/)`
         
           } else if (license === "Apache License 2.0"){
-            licenseBadge = `[<img src="https://img.shields.io/badge/License-Apache_License_2.0-green">](https://www.apache.org/licenses/LICENSE-2.0)`
+            licenseBadge = `![Apache License 2.0](https://img.shields.io/badge/License-Apache_License_2.0-green)(https://www.apache.org/licenses/LICENSE-2.0)`
         
           } else if (license === "BSD 3-Clause 'Revised'"){
-            licenseBadge = `[<img src="https://img.shields.io/badge/License-BSD_3Clause_'Revised'-yellow">](https://opensource.org/license/bsd-3-clause)`
+            licenseBadge = `![BSD 3-Clause 'Revised'](https://img.shields.io/badge/License-BSD_3Clause_Revised-yellow)(https://opensource.org/license/bsd-3-clause)`
         
           } else if (license === "BSD 2-Clause 'Simplified'"){
-            licenseBadge = `[<img src="https://img.shields.io/badge/License-BSD_2Clause_'Simplified'-pink">](https://opensource.org/license/bsd-2-clause)`
+            licenseBadge = `![BSD 2-Clause 'Simplified'](https://img.shields.io/badge/License-BSD_2Clause_Simplified-pink)(https://opensource.org/license/bsd-2-clause)`
         
           } else if (license === "ISC License"){
-            licenseBadge = `[<img src="https://img.shields.io/badge/License-ISC_License-gray">](https://www.isc.org/licenses/)`
+            licenseBadge = `![ISC License](https://img.shields.io/badge/License-ISC_License-gray)(https://www.isc.org/licenses/)`
           } else {licenseBadge = ""};
           return licenseBadge;
       };

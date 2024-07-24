@@ -1,5 +1,4 @@
 function markdownOutput(mdObj) {
-  getLicenseContent()
   const markdown = `# ${mdObj.title}
 
   ## Table of Contents
@@ -28,7 +27,7 @@ function markdownOutput(mdObj) {
   ${mdObj.tests}
 
   ## License
-  ${mdObj.licenseBadge} This project is using the ${mdObj.license}. Please click the badge icon for more information, or refer directly to the LICENSE in the repo.
+  ${mdObj.licenseBadge ? `${mdObj.licenseBadge}\n` : ''} This project is using the ${mdObj.license}. Please click the badge icon for more information, or refer directly to the LICENSE in the repo.
   
   ## Credits
   ${mdObj.credits}
