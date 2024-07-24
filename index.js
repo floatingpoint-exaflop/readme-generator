@@ -1,79 +1,40 @@
-// Completed: Include packages needed for this application
 const inquirer = require('inquirer');
-const {writeFile} = require('fs');
-const {generateMarkdown} = require("./generateMarkdown")
-// TODO: Create an array of questions for user input
-const questions = [
-    {
-        type: "input",
-        message: "What's your project title?",
-        name: 'title'
-    },
-    {
-        type: "input",
-        message: "Describe your project in a couple sentences.",
-        name: 'description'
-    },
-    {
-        type: "input",
-        message: "What special packages or dependencies should users need to install or run this project?",
-        name: 'installation'
-    },
-    {
-        type: "input",
-        message: "What steps does a user take to actually use this project?",
-        name: 'usage'
-    },
-    {
-        type: "input",
-        message: "Any contribution guidelines other users should be aware of?",
-        name: 'contributing'
-    },
-    {
-        type: "input",
-        message: "How would a user test this project?",
-        name: 'tests'
-    },
-    {
-        type: "list",
-        message: "What License is this project using?",
-        name: 'license',
-        choices: ["MIT License","Apache License 2.0","BSD 3-Clause 'Revised'","BSD 2-Clause 'Simplified'","ISC License"]
-    },
-    {
-        type: "input",
-        message: "Any credits or acknowledgements needed for this project?",
-        name: 'credits'
-    },
-    {
-        type: "input",
-        message: "What is your Github username?",
-        name: 'github'
-    },
-    {
-        type: "input",
-        message: "What is your email address?",
-        name: 'email'
-    }
-];
+const fs = require('fs');
+const {markdownOutput} = require("./markdownOutput");
+const {userQuestions} = require("./questions");
 
-// TODO: Create a function to write README file
-function writeToFile(filename, data) {
-const responses = inquirer.createPromptModule(questions)
-const finalMarkdown = generateMarkdown(responses)
-writeFile('README.md', finalMarkdown, (err) =>{
-    if (err){
-        console.error("The README could not be generated; please try again.")
-    } else {
-        console.log("README successfully generated from the information collected.")
-    }
-})
-}
+function getLicenseBadge(license) {
+    let licenseBadge;
+      if (license === "MIT License"){
+        licenseBadge = `[<img src="https://img.shields.io/badge/License-MIT_License-blue">](https://mit-license.org/)`
+        
+          } else if (license === "Apache License 2.0"){
+            licenseBadge = `[<img src="https://img.shields.io/badge/License-Apache_License_2.0-green">](https://www.apache.org/licenses/LICENSE-2.0)`
+        
+          } else if (license === "BSD 3-Clause 'Revised'"){
+            licenseBadge = `[<img src="https://img.shields.io/badge/License-BSD_3Clause_'Revised'-yellow">](https://opensource.org/license/bsd-3-clause)`
+        
+          } else if (license === "BSD 2-Clause 'Simplified'"){
+            licenseBadge = `[<img src="https://img.shields.io/badge/License-BSD_2Clause_'Simplified'-pink">](https://opensource.org/license/bsd-2-clause)`
+        
+          } else if (license === "ISC License"){
+            licenseBadge = `[<img src="https://img.shields.io/badge/License-ISC_License-gray">](https://www.isc.org/licenses/)`
+          } else {licenseBadge = ""};
+          return licenseBadge;
+      };
 
-// TODO: Create a function to initialize app
-function init() {
+async function init(){
+    const questions = userQuestions();
+    const answers = await inquirer.prompt(questions);
+    answers.licenseBadge = getLicenseBadge(answers.license);
+    const outputMD = markdownOutput(answers);
+    fs.writeFile('README.md', outputMD, (err) =>{
+        if (err){
+            console.error("The README could not be generated; please try again.")
+        } else {
+            console.log("README successfully generated from the information collected.")
+        }
+    })
+};
 
-}
-
-// Function call to initialize app
 init();
