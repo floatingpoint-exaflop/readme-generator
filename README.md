@@ -19,6 +19,8 @@
   ## Usage
   To use this project, ensure you have the node packages installed as specified in the Installation section above. Then open a terminal on the project root and simply run node index.js - from there, just answer the questions!
 
+  [A video tutorial for using readme-generator](https://drive.google.com/file/d/1lYZnOAMy-pIvVc-_zIaOtUkFdfr4m354/view?usp=sharing)
+
   ## Contributing
   If you want to contribute to this project - particularly if you know how I might refactor the code so it works with later versions of inquirer, see my contact info in the Questions section below. Don’t hesitate to reach out! I am a beginner at this stuff but always hungry to learn from others in the community. I might add validation for responses at some point; I am aware inquirer supports this functionality to an extent.
 
